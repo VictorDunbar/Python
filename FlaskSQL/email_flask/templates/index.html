@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Email Validation</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        #wrapper {
+            width: 1070px;
+            margin: 0px auto;
+            padding: 5px;
+            overflow: hidden;
+        }
+        
+        #centralize {
+            margin: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="centralize">
+
+            <form action="/signup" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="example@example.com">
+                        <input type="submit" name="email" class="btn btn-default navbar-btn">
+                    </div>
+
+                </div>
+        </div>
+        </form>
+    </div>
+</body>
+
+</html>

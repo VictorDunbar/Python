@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{session.name}}'s Wall</title>
+    <style>
+        * {
+            margin: 10px;
+            padding: 0px;
+        }
+        
+        body {
+            background-image: url"("Dojo.jpg")
+
+        }
+        
+        #content {
+            border: 3px solid black;
+            width: 500px;
+            height: 80px;
+            overflow-y: scroll;
+            font-weight: bold;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+        }
+        
+        #post {
+            margin-left: 380px;
+            width: 130px;
+            height: 35px;
+            border-radius: 3px;
+            background-color: steelblue;
+            color: white;
+        }
+        
+        header {
+            display: inline-block;
+            width: 1000px;
+        }
+        
+        h1 {
+            width: 260px;
+            display: inline-block;
+        }
+        
+        h3 {
+            width: 155px;
+            display: inline-block;
+            margin-left: 470px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Coding Dojo Wall</h1>
+        <h3>Welcome, {{session.name}}</h3>
+        <a href="/">log out</a>
+        <hr>
+    </header>
+    <form action="/messages" method="post">
+        <label for="content">Post a Message:<br>
+             <textarea name="message" id="content" form="usrform"></textarea>
+        </label><br>
+        <input type="submit" id="post" value="Post a Message">
+    </form>
+    <br>
+    <h2>Today's Posts:</h2>
+    <br>
+    <div class="post">
+        {% for message in messages: %}
+        <h5 id="messagename">{{ message['first_name'] }} {{ message['last_name'] }}'s message says:</h5>
+        <p id="messagecontent">{{ message["message_content"] }}</p>
+
+        <form action='/addcommment/{{ message[' id '] }}' method='POST'>
+            <p>Comment: </p>
+            <textarea class="form-control" name="addcomment"></textarea>
+            <input type="submit" id="commentbutton" name="addcomment" value="Comment" class="btn btn-default navbar-btn"> {% for comment in comments: %}{% if message['id'] == comment['message_id'] %}
+            <p class="makesmall">Comment(s):</p>
+            <ul>
+                <li class="makesmall">{{ comment["first_name"] }} has commented: {{ comment["commented_content"] }}</li>
+                {% endif %} {% endfor %}
+            </ul>
+        </form>
+        {% endfor %}
+    </div>
+
+
+
+</body>
+
+</html>
