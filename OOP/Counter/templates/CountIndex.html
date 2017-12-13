@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Counter</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        
+        body {
+            background-color: black;
+            text-align: center;
+            margin-top: 100px;
+        }
+        
+        h1 {
+            color: goldenrod;
+        }
+        
+        input {
+            width: 200px;
+            margin-top: 30px;
+            border-radius: 4px;
+            height: 50px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        
+        h3 {
+            margin-top: 20px;
+            color: goldenrod;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Counter</h1>
+    <h3>{{session['count']}}</h3>
+    <a ref="/increment>+1"></a>
+    <form action='/reset' name='reset'>
+        <input type='submit' name='reset' value='Reset Counter'>
+    </form>
+
+</body>
+
+</html>
