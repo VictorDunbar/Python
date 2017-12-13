@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ninja Gold</title>
+    <style>
+        * {
+            margin: 10px;
+            padding: 0px;
+        }
+        
+        .place {
+            display: inline-block;
+            width: 200px;
+            height: 150px;
+            padding: 10px;
+            border: 2px solid rgb(169, 248, 40);
+            text-align: center;
+        }
+        /*
+        .place *{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        }
+        */
+        
+        .red {
+            color: red;
+        }
+        
+        .activities h6 {
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+        
+        .wrapper {
+            background-color: black;
+            height: 1000px;
+        }
+        
+        body {
+            background-color: black;
+        }
+        
+        h3 {
+            color: rgb(169, 248, 40);
+        }
+        
+        h6 {
+            color: rgb(169, 248, 40);
+        }
+        
+        .activities {
+            width: 965px;
+            height: 230px;
+            border: 2px solid rgb(169, 248, 40);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h3>Your Gold : {{gold}}</h3>
+        <form class="place" action="/processgold" method="post">
+            <h3>Farm</h3>
+            <h6>(earns 10-20 gold)</h6>
+            <input type="hidden" name="place" value="farm">
+            <input type="submit" name="name" value="Find Gold!">
+        </form>
+        <form class="place" action="/processgold" method="post">
+            <h3>Cave</h3>
+            <h6>(earns 5-10 gold)</h6>
+            <input type="hidden" name="place" value="cave">
+            <input type="submit" name="name" value="Find Gold!">
+        </form>
+        <form class="place" action="/processgold" method="post">
+            <h3>House</h3>
+            <h6>(earns 2-5 gold)</h6>
+            <input type="hidden" name="place" value="house">
+            <input type="submit" name="name" value="Find Gold!">
+        </form>
+        <form class="place" action="/processgold" method="post">
+            <h3>Casino</h3>
+            <h6>(earns/takes 0-50 gold)</h6>
+            <input type="hidden" name="place" value="casino">
+            <input type="submit" name="name" value="Find Gold!">
+        </form>
+        <h3>Activities</h3>
+        <div class="activities">
+            {% for item in log %} {{ item|safe }} {%endfor%}
+        </div>
+        <h3>New Game</h3>
+
+
+    </div>
+
+</body>
+
+</html>
