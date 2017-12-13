@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Courses</title>
+    <style>
+        table {
+            border: 1px solid black;
+            margin: 1px;
+            width: 900px;
+            display: table;
+        }
+        
+        #add {
+            background-color: green;
+            color: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Add a new course</h1>
+    <br>
+    <form action="/courses" method="POST">
+        {% csrf_token %}
+        <br> Name: <input type="text" name="name">
+        <br> Description: <input type="text" name="description">
+        <br>
+        <input type="submit" name="add" id="add" value="Add">
+    </form>
+    <br>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <th>{{course.name}}</td>
+                <th>{{course.description}}</th>
+                <th>{{course.created_at}}</th>
+                <th><a href='edit/{{course.id}}'>Remove</a></th>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+python manage.py makemigrations
+python manage.py migrate
+python manage.py shell
+from apps.LikesBooks_app.models import *
+
+-->Create 3 different user accounts: 
+Users.objects.create(first_name="Victor")
+Users.objects.create(first_name="James")
+Users.objects.create(first_name="Eric")
+
+-->Have first user create 2 books:
+a = Users.objects.get(id=1)
+Books.objects.create(name="Book1A", uploader=a)
+Books.objects.create(name="Book1B", uploader=a)
+
+-->Have second user create 2 books:
+b = Users.objects.get(id=2)
+Books.objects.create(name="Book2A", uploader=b)
+Books.objects.create(name="Book2B", uploader=b)
+
+-->Have third user create 2 books:
+c = Users.objects.get(id=3)
+Books.objects.create(name="Book3A", uploader=c)
+Books.objects.create(name="Book3B", uploader=c)
+
+-->First user like last and first book:
+a.liked_books.set([Books.objects.first(),Books.objects.last()])
+
+-->Second user like first and third book:
+b.liked_books.set([Books.objects.first(),Books.objects.get(id=3)])
+
+-->Third user like all books: 
+c.liked_books.set([Books.objects.get(id=1),Books.objects.get(id=2),Books.objects.get(id=3),Books.objects.get(id=4),Books.objects.get(id=5),Books.objects.get(id=6)])
+
+-->Display all users who like first book:
+a = Books.objects.get(id=1)
+for x in a.liked_users.all():
+    print x.first_name
+
+-->Display user who uploaded first book:
+Books.objects.first().uploader.first_name
+
+-->Display all users who like second book: 
+for x in Books.objects.get(id=2).liked_users.all():
+    print x.first_name
+
+-->Display user who uplaoded second book: 
+Books.objects.get(id=2).uploader.first_name
+
+

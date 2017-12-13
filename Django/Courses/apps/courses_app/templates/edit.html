@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Delete {{id}}?</title>
+    <style>
+        #yes {
+            width: 200px;
+            background-color: darkred;
+            color: aliceblue;
+            border-radius: 5px;
+        }
+        
+        #no {
+            border-radius: 5px;
+        }
+        
+        h4 {
+            color: darkred;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Delete {{course.name}}?</h2>
+    <h4>Are you sure you want to delete the following course?</h4>
+    <p>Name: {{course.name}}</p>
+    <!-- <p>Description: {{course.description}}</p> -->
+    <form class="form" action="/destroy/{{id}}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="course_id" value="{{id}}">
+        <button type="reset" name="no" id="no">NO</button>
+        <button type="submit" name="Yes" id="yes">YES! I want to delete this</button>
+
+    </form>
+
+</body>
+
+</html>
