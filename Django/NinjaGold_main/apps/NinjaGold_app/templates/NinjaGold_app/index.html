@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NINJA GOLD Django!</title>
+    <!-- {% load static %}
+    <link rel="stylesheet" href="{% static 'ninja.css' %}" media="screen" title="no title" charset="utf-8"> -->
+    <style>
+        * {
+            margin: 0px;
+            padding: 4px;
+        }
+        
+        body {
+            width: 1000px;
+            height: auto;
+            background-color: gray;
+        }
+        
+        #wrapper {
+            width: 1000px;
+            height: 900px;
+            background-color: white;
+            margin-left: 300px;
+            padding: 5px;
+        }
+        
+        #mid {
+            width: 1000px;
+            height: auto;
+            margin-left: 40px;
+            margin-top: 10px;
+        }
+        
+        .place {
+            display: inline-block;
+            width: 215px;
+            border: 1px solid black;
+            text-align: center;
+            height: 150px;
+        }
+        
+        #log {
+            width: 800px;
+            height: 200px;
+            border: 2px solid black;
+            margin-left: 90px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="top">
+            <h3> Your gold: {{request.session.total}}</h3>
+        </div>
+        <div id="mid">
+            <div class="place">
+                <h2>Farm</h2>
+                <br>
+                <p>(earns 10-20 gold)</p>
+                <br>
+                <form action="/process" method='post'>
+                    {%csrf_token%}
+                    <input type="hidden" name="action" value="farm">
+                    <input type="submit" name="Farm" value="Find gold!">
+                </form>
+            </div>
+            <div class="place">
+                <h2>Cave</h2>
+                <br>
+                <p>(earns 5-10 gold)</p>
+                <br>
+                <form action="/process" method='post'>
+                    {%csrf_token%}
+                    <input type="hidden" name="action" value="cave">
+                    <input type="submit" name="cave" value="Find gold!">
+                </form>
+            </div>
+            <div class="place">
+                <h2>House</h2>
+                <br>
+                <p>(earns 2-5 gold)</p>
+                <br>
+                <form action="/process" method='post'>
+                    {%csrf_token%}
+                    <input type="hidden" name="action" value="house">
+                    <input type="submit" name="house" value="Find gold!">
+                </form>
+            </div>
+            <div class="place">
+                <h2>Casino</h2>
+                <br>
+                <p>(earns or takes 0 - 50 gold)</p>
+                <br>
+                <form action="/process" method='post'>
+                    {%csrf_token%}
+                    <input type="hidden" name="action" value="casino">
+                    <input type="submit" name="casino" value="Find gold!">
+                </form>
+            </div>
+        </div>
+        <div id="bot">
+            <div id="log">
+                <p>Activites:</p><br> {%for i in request.session.log%} {%if i.color == 'red'%}
+                <font color="red">Lost {{i.pay}} from the {{i.loc}} ({{i.now}})</font>
+                {%else%}
+                <font color="green">Earned {{i.pay}} from the {{i.loc}} ({{i.now}})</font>
+                {%endif%}
+                <br> {%endfor%}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
