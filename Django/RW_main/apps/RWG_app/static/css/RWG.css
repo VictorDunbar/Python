@@ -1,0 +1,38 @@
+* {
+    margin: 4px;
+    padding: 0px;
+}
+
+#wrapper {
+    margin: 0px auto;
+    height: 1000px;
+    width: 1000px;
+    text-align: center;
+}
+
+#top {
+    display: inline-block;
+}
+
+#wordbox {
+    margin: 20px;
+    height: 75px;
+    width: 500px;
+    background-color: white;
+    display: inline-block;
+}
+
+#bot {
+    margin: 20px;
+    height: 150px;
+    width: 600px;
+    background-color: white;
+    display: inline-block;
+}
+
+#submit {
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    font-weight: bold;
+}

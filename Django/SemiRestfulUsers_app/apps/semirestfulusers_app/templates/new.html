@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users New</title>
+</head>
+
+<body>
+    <h1>Add a New User</h1>
+    {% if messages %} {% for x in messages %}
+    <p>{{ x.message }}</p>
+    {% endfor %} {% endif %}
+    <form action="/users/create" method="POST">
+        {% csrf_token %}
+        <label>First name:</label>
+        <input type="text" name="first_name">
+        <br>
+
+        <label>Last name:</label>
+        <input type="text" name="last_name">
+        <br>
+
+        <label>Email:</label>
+        <input type="text" name="email">
+        <br>
+        <input type="submit" value="Create">
+        <br>
+    </form>
+    <br>
+    <a href="/"> Go back</a>
+
+</html>

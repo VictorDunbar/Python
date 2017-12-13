@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> {% load static %}
+    <title>Session Words</title>
+    <style>
+        * {
+            margin: 5px;
+            padding: 0px;
+        }
+        
+        #session_btn {
+            width: 100px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        #clear_btn {
+            width: 100px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        #word {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Add a new word!</h1>
+        <form action="/add" method="POST">
+            {% csrf_token %}
+            <input type="text" id="word" name="word">
+            <h4>Choose Color</h4>
+            <label><input type="radio" name="color" value="Red">Red</label>
+            <label><input type="radio" name="color" value="Green">Green</label>
+            <label><input type="radio" name="color" value="Blue">Blue</label>
+            <label><input type="checkbox" name="size">Show in BIG font</label>
+            <input type="submit" id="session_btn" value="Add to Session">
+        </form>
+    </div>
+    <div>
+        <form action="/clear">
+            {% csrf_token %}
+            <input type="submit" id="clear_btn" value="Clear Session">
+        </form>
+        {% for x in request.session.word_log %}
+        <p><span style="color: {{ x.color }}; font-size: {{ x.size }};"> {{ x.word }}</span> - added {{ x.time }}</p>
+        <br> {% endfor %}
+    </div>
+
+</body>
+
+</html>
