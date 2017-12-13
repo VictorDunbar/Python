@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> {% load static %}
+
+    <title>Survey Form2</title>
+</head>
+
+<body>
+    <header>
+        <h3>Thanks for submitting this form! This is submission number {{count}}</h3>
+    </header>
+    <main>
+        <p>Name: {{name}}</p>
+        <p>Dojo Location: {{location}}</p>
+        <p>Favorite Language: {{lang}}</p>
+        <p>Comment: {{comment}}</p>
+        <form action="/survey" method="get">
+            <input type="submit" value="Go Back">
+        </form>
+    </main>
+</body>
+
+</html>
