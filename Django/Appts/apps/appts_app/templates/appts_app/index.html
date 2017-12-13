@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Index</title>
+
+</head>
+
+<body>
+    <div id="top">
+        <a href="{% url 'logreg_app:logout' %}">Logout</a>
+    </div>
+
+    <h1>Hello, {{request.session.full_name}}</h1>
+
+    <!-- {% if messages %} {% for message in messages %}
+    <h1>{{message}}</h1>
+    {% endfor %} {% endif %} -->
+    <h2>Here are your appointments for today: {{request.session.datenow}}</h2>
+    <table>
+        <tr>
+            <th>Tasks</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        {% for appointment in today %}
+        <tr>
+            <td>{{appointment.task}}</td>
+            <td>{{appointment.start_time}}</td>
+            <td>{{appointment.status}}</td>
+            {% if appointment.status != "Done" %}
+            <td><a href="{% url 'appts_app:edit' appointment_id=appointment.id%}">Edit</a></td>
+            <td><a href="{% url 'appts_app:delete' appointment_id=appointment.id%}">Delete</a></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Your Other appointments</h2>
+    <table>
+        <tr>
+            <th>Tasks</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+        {% for appointment in future %}
+        <tr>
+            <td>{{appointment.task}}</td>
+            <td>{{appointment.start_date}}</td>
+            <td>{{appointment.start_time}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p></p>
+    <h3>Add Appointment</h3>
+    <div id="add_appointment">
+        <form action="{% url 'appts_app:create' %}" method="POST">
+            {% csrf_token %}
+            <label for="start_date">Date:</label>
+            <input type="date" name="start_date">
+            <p></p>
+            <label for="start_time">Time:</label>
+            <input type="time" name="start_time">
+            <p></p>
+            <label for="task">Tasks:</label>
+            <input type="text" name="task">
+            <p></p>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+    <h3>Other Users Appointments:</h3>
+    <div>
+        <table>
+            <tr>
+                <th>Tasks</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+
+        </table>
+    </div>
+</body>
+
+</html>

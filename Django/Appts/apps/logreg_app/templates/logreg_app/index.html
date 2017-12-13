@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login and Reg | Home</title>
+    <style>
+        input {
+            border-radius: 4px;
+        }
+        
+        #register {
+            background-color: #597eaa;
+            color: white;
+        }
+        
+        #login {
+            background-color: #597eaa;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Registration</h1>
+    {% if messages and request.session.valid == "Register" %} {% for x in messages %}
+    <p>{{ x.message }}</p>
+    {% endfor %} {% endif %}
+
+
+    <form action="{% url 'logreg_app:register' %}" method='POST'>
+        {% csrf_token %}
+        <label>Full Name:</label>
+        <input type="text" name="full_name"><br>
+        <label>Birthday:</label>
+        <input type="date" name="birthday"><br>
+        <label>Email:</label>
+        <input type="text" name="email"><br>
+        <label>Password:</label>
+        <input type="password" name="password"><br>
+        <label>Confrim Password:</label>
+        <input type="password" name="confirm_password"><br>
+        <input type="submit" value="Register" id="register">
+    </form>
+    <h1>Login</h1>
+    {% if messages and request.session.valid == "Login" %} {% for x in messages %}
+    <p>{{ x.message }}</p>
+    {% endfor %} {% endif %}
+
+
+    <form action="{% url 'logreg_app:login' %}" method='POST'>
+        {% csrf_token %}
+        <label>Email:</label>
+        <input type="text" name="email"><br>
+        <label>Password:</label>
+        <input type="password" name="password"><br>
+        <input type="submit" value="Login" id="login">
+    </form>
+
+
+
+</body>
+
+</html>
