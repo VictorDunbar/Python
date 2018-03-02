@@ -1,8 +1,10 @@
 # find and replace
 
 words = "It's thanksgiving day. It's my birthday, too!"
-print "day"
-print words.replace("day", "month")
+dayposition = words.find("day")
+print dayposition
+newstr = words.replace("day", "month")
+print newstr
 
 # min and max
 
@@ -19,7 +21,7 @@ y.append(x[0])
 y.append(x[len(x)-1])
 print y
 
-# sort, split, the push the list from first half to positon 0 of the list created from the second half
+# New list
 
 x = ["hello", 2, 3, 4, 5, 6, "world"]
 x.sort()
@@ -30,8 +32,3 @@ print y
 print z
 y.append(z)
 print y
-
-
-
-
-    
